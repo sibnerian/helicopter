@@ -1,16 +1,19 @@
 #Import Modules
 import os, pygame
+import config as cfg
 from pygame.locals import *
 from random import random
-from config import width, height, BIRDS
 from loaders import load_image, load_sound
-from classes import * 
+from wall import Wall
+from obstacle import Obstacle 
+from helicopter import Helicopter
+from level_controller import Level_controller
 
 def run_game():
 	#initialize pygame
 	pygame.init()
 	clock = pygame.time.Clock()
-	screen = pygame.display.set_mode((width, height))
+	screen = pygame.display.set_mode((cfg.width, cfg.height))
 	pygame.display.set_caption('Helicopter')
 	pygame.mouse.set_visible(1)
 
@@ -85,5 +88,5 @@ def get_game_over_surface(score):
     if pygame.font: 
         font = pygame.font.Font(None, 45)
         birdnum = min(score/100, 7)
-        text = font.render("Like a" + BIRDS[birdnum] +", you flew "+str(score)+" meters. Press R to fly again.", 1, (250, 250, 250))
+        text = font.render("Like a" + cfg.birds[birdnum] +", you flew "+str(score)+" meters. Press R to fly again.", 1, (250, 250, 250))
         return text
